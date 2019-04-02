@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-5 col-sm-4">
                 <div class="logo">
-                    <a href="{{ url("/") }}">
+                    <a href="{{ route("home") }}">
                         <img class="logo-normal" alt="" src="{{ asset('img/logo/logo.png') }}">
                     </a>
                 </div>
@@ -50,7 +50,7 @@
 
                                 </li>
                                 <li><a href="{{ route("about") }}">about</a></li>
-                                <li class="mega-menu-position top-hover"><a href="#menu">menu <i class="ion-chevron-down"></i></a>
+                                <li class="mega-menu-position top-hover"><a href="{{ route("home") }}#menu">menu <i class="ion-chevron-down"></i></a>
                                 </li>
                                 <li><a href="{{ route("contact") }}">contact us</a></li>
                             </ul>
