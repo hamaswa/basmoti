@@ -53,6 +53,22 @@
                                 <li class="mega-menu-position top-hover"><a href="{{ route("home") }}#menu">menu <i class="ion-chevron-down"></i></a>
                                 </li>
                                 <li><a href="{{ route("contact") }}">contact us</a></li>
+                                @if(auth()->id())
+
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                @endif
+
                             </ul>
                         </nav>
                     </div>
