@@ -1,4 +1,6 @@
+@extends('layouts.app')
 
+@section('content')
         <div class="slider-area">
             <div class="slider-active owl-dot-style owl-carousel">
                 <div class="single-slider bg-img height-100vh d-flex align-items-center justify-content-center"
