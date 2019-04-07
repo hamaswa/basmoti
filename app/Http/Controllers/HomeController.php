@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Slider;
+use App\About;
+use App\Gcategory;
+use App\Gallery;
+use App\Mcategory;
+use App\Siteconfig;
 
 class HomeController extends Controller
 {
@@ -23,7 +29,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $data['config'] = Siteconfig::find(1);
+        $data['slider'] = Slider::find(1);
+        //$data['slider'] = Slider::find(1);
+        $data['about'] = About::find(1);
+        $data['gcategory'] = Gcategory::all(["id","name"]);
+        $data['gallery'] = Gallery::all(["id",'category_id',"image_url"]);
+        $data['mcategory'] = Mcategory::all(['id','name']);
+
+
+        foreach($data['mcategory'] as $key => $cat){
+
+            $data['mcategory'][$key]["menu"] = $cat->menu;
+        }
+
+
+        return view('index' , $data);
+
     }
 
     public function about()

@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $config->title }}</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
@@ -49,8 +49,9 @@
                                 <li class="top-hover"><a href="{{ route("home") }}">home <i class="ion-chevron-down"></i></a>
 
                                 </li>
-                                <li><a href="{{ route("about") }}">about</a></li>
-                                <li class="mega-menu-position top-hover"><a href="{{ route("home") }}#menu">menu <i class="ion-chevron-down"></i></a>
+                                <li><a href="{{ route("home") }}#about">about</a></li>
+                                <li class="mega-menu-position top-hover">
+                                    <a href="{{ route("home") }}#menu">menu <i class="ion-chevron-down"></i></a>
                                 </li>
                                 <li><a href="{{ route("contact") }}">contact us</a></li>
                                 @if(auth()->id())

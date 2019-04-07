@@ -2,21 +2,16 @@
 
 @section('content')
     <div class="slider-video-area height-100vh youtube-bg d-flex align-items-center bg-img"
-         style="background-image: url( {{ asset('img/slider/video.jpg') }});"
-         data-property="{videoURL:'cxB4ACaaR4I',opacity:1,showControls:false,autoPlay:true,}">
+         style="background-image: url( {{ asset("/uploads") }}/{{ $slider->image_url }});"
+         data-property="{videoURL:'{!! $slider->video !!}',opacity:1,showControls:false,autoPlay:true,}">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="video-title text-center">
-                        <h1> Basmoti  serves food not just to fulfill your stomach, rather to
-                            fulfill your life.</h1>
+                        <h1> {{ $slider->description }}</h1>
                         <div class="slider-btn mt-40">
-                            <a class="scroll-up" href="#book">Book Now</a>
+                            <a class="scroll-up" href="#contact-us">Book Now</a>
                         </div>
-                        @if(auth()->id())
-                            <div class="col-sm-12 justify-content-xl-end"><a href="#"> Edit </a></div>
-                        @endif
-
                     </div>
                 </div>
             </div>
@@ -66,26 +61,22 @@
             <div class="row d-flex align-items-center">
                 <div class="col-lg-6">
                     <div class="about-content pr-30">
-                        <h2>About Basmoti Restaurant </h2>
+                        <h2>{{ $about->title1 }} </h2>
                         @if(auth()->id())
-                            <div class="col-sm-12 justify-content-xl-end"><a href="#"> Edit </a></div>
+                            <!--div class="col-sm-12 justify-content-xl-end"><a href="#"> Edit </a></div-->
                         @endif
-                        <h3> Basmoti ensures healthy environment. Make a short trip. </h3>
+                        <h3> {{ $about->title2 }} </h3>
                         <div class="about-peragraph">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet dolor libero, eget
-                                loved dost venenatis mauris finibus dictum. Vestibulum quis elit eget neque porttitor no
-                                amet dolor Proin pretium.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet dolor libero, eget
-                                loved dost venenatis mauris finibus dictum.</p>
+                           {{ $about->short_description }}
                             <div class="default-btn-style mt-35">
-                                <a href="#">read more</a>
+                                <a href="{{ route("about.index") }}">read more</a>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-img">
-                        <img alt="" src="{{ asset('img/banner/about.jpg') }}">
+                        <img alt="" src="{{ asset('uploads') }}/{{ $about->image_url }}">
                     </div>
 
                 </div>
@@ -97,83 +88,40 @@
         <div class="container">
 
             <div class="section-title text-center mb-50">
-                <h2>Our gallery</h2>
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nostrud exercitation ullamco laboris nisi.</p>
-            </div>
-            <div class="gallery-menu-wrap text-center">
-                <div class="gallery-menu portfolio-left-menu mb-50">
-                    <button class="active" data-filter="*">ALL</button>
-                    <button data-filter=".cat1">desert </button>
-                    <button data-filter=".cat2">coffee</button>
-                    <button data-filter=".cat3">burger </button>
+                <h2>{{ $config->gallerytitle }}</h2>
+                <p>
+                    {{ $config->gallerydescription }}
+                </p>
+                </div>
+                <div class="gallery-menu-wrap text-center">
+                    <div class="gallery-menu portfolio-left-menu mb-50">
+                        <button class="active" data-filter="*">ALL</button>
+                    @foreach($gcategory as $cat)
+                        <button data-filter=".cat{{ $cat->id }}">{{ $cat->name }} </button>
+                 @endforeach
                 </div>
             </div>
             <div class="row portfolio-style-2 grid">
-                <div class="col-md-4 col-sm-6 col-xs-12 grid-item cat1">
+             @foreach($gallery as $gal)
+                <div class="col-md-4 col-sm-6 col-xs-12 grid-item cat{{$gal->category_id}}">
                     <div class="gallery hover-style mb-30">
                         <div class="gallery-img">
-                            <img src="{{ asset('img/gallery/1.jpg') }}" alt="" />
+                            <img src="{{ asset('/uploads/'.$gal->image_url) }}" alt="" />
                             <div class="gallery-view">
-                                <a class="img-popup" href="{{ asset('img/gallery/l1.jpg') }}">
+                                <a class="img-popup" href="{{ asset('/uploads/'.$gal->image_url) }}">
                                     <span class="plus"></span>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 grid-item cat2 cat3">
-                    <div class="gallery hover-style mb-30">
-                        <div class="gallery-img">
-                            <img src="{{ asset('img/gallery/2.jpg') }}" alt="" />
-                            <div class="gallery-view">
-                                <a class="img-popup" href="{{ asset('img/gallery/l2.jpg') }}">
-                                    <span class="plus"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 grid-item cat1">
-                    <div class="gallery hover-style mb-30">
-                        <div class="gallery-img">
-                            <img src="{{ asset('img/gallery/3.jpg') }}" alt="" />
-                            <div class="gallery-view">
-                                <a class="img-popup" href="{{ asset('img/gallery/l3.jpg') }}">
-                                    <span class="plus"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 grid-item cat2">
-                    <div class="gallery hover-style mb-30">
-                        <div class="gallery-img">
-                            <img src="{{ asset('img/gallery/4.jpg') }}" alt="" />
-                            <div class="gallery-view">
-                                <a class="img-popup" href="{{ asset('img/gallery/l4.jpg') }}">
-                                    <span class="plus"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 col-xs-12 grid-item cat1">
-                    <div class="gallery hover-style mb-30">
-                        <div class="gallery-img">
-                            <img src="{{ asset('img/gallery/5.jpg') }}" alt="" />
-                            <div class="gallery-view">
-                                <a class="img-popup" href="{{ asset('img/gallery/l5.jpg') }}">
-                                    <span class="plus"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+             @endforeach
+
             </div>
         </div>
     </div>
 
-    <div class="popular-product gray-bg pt-100 pb-100">
+    <!--div class="popular-product gray-bg pt-100 pb-100">
         <div class="container">
             <div class="section-title text-center mb-50">
                 <h2>Our Popular Dishes</h2>
@@ -185,10 +133,10 @@
                     <img alt="" src="{{ asset('img/product/pro-1.jpg') }}">
                     <div class="product-content text-center">
                         <h4>
-                            Oldtimer with Cheese
+
                         </h4>
-                        <p>Chicken meat which is breaded or battered, then deep.</p>
-                        <span>$100.00</span>
+                        <p></p>
+                        <span></span>
                     </div>
                 </div>
                 <div class="product-style-wrap">
@@ -234,18 +182,19 @@
             </div>
         </div>
 
-    </div>
+    </div-->
 
 
     <div class="product-menu-area pt-100 pb-70 gray-bg" id="menu">
         <div class="container">
             <div class="section-title text-center mb-50">
-                <h2>Our Food Menu</h2>
+                <h2>{{ $config->menutitle }}</h2>
                 @if(auth()->id())
                     <div class="col-sm-12 justify-content-xl-end"><a href="#"> Edit </a></div>
                 @endif
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim nostrud exercitation ullamco laboris nisi.</p>
+                <p>
+                    {{ $config->menudescription }}
+                </p>
             </div>
 
             <div class="menu-tab-wrap mb-50">
@@ -254,1010 +203,47 @@
                     <a class="active" href="#tab1" data-toggle="tab">
                         All item
                     </a>
-                    <a href="#tab2" data-toggle="tab">
-                        breakfast
-                    </a>
-                    <a href="#tab3" data-toggle="tab">
-                        lunch
-                    </a>
-                    <a href="#tab4" data-toggle="tab">
-                        dinner
-                    </a>
-                    <a href="#tab5" data-toggle="tab">
-                        party
-                    </a>
-                    <a href="#tab6" data-toggle="tab">
-                        coffee
-                    </a>
+                    @foreach($mcategory as $cat)
+                        <a href="#tab{{ $cat->id }}" data-toggle="tab">
+                            {{ $cat->name }}
+                        </a>
+                    @endforeach
+
+
                 </div>
 
             </div>
             <div class="tab-content jump">
-                <div id="tab1" class="tab-pane active">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
+                @foreach($mcategory as $cat)
+                    <div id="tab{{ $cat->id }}" class="tab-pane active">
+                        @foreach($cat['menu'] as $menu)
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="single-menu-product mb-30">
+                                        <div class="menu-product-img">
+                                            <img alt="" src="{{ asset('/uploads/'.$gal->image_url) }}">
                                         </div>
-                                        <div class="menu-price">
-                                            <span>$100</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$150</span>
+                                        <div class="menu-product-content">
+                                            <div class="menu-title-price">
+                                                <div class="menu-title">
+                                                    <h4>
+                                                        {{ $menu->title }}
+                                                    </h4>
+                                                </div>
+                                                <div class="menu-price">
+                                                    <span>$100</span>
+                                                </div>
+                                            </div>
+                                            <p>{{ $menu->title }}</p>
                                         </div>
                                     </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-3.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$200</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-4.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Black Bean & Veggie Fajitas.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$250</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-5.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Oldtimer with Cheese.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-6.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Crispy Fiery Pepper Crispers.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab2" class="tab-pane">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$100</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$150</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-3.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$200</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-4.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Black Bean & Veggie Fajitas.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$250</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-5.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Oldtimer with Cheese.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-6.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Crispy Fiery Pepper Crispers.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab3" class="tab-pane">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$100</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$150</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-3.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$200</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-4.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Black Bean & Veggie Fajitas.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$250</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-5.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Oldtimer with Cheese.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-6.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Crispy Fiery Pepper Crispers.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab4" class="tab-pane">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$100</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$150</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-3.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$200</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-4.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Black Bean & Veggie Fajitas.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$250</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-5.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Oldtimer with Cheese.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-6.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Crispy Fiery Pepper Crispers.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab5" class="tab-pane">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$100</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$150</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-3.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$200</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-4.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Black Bean & Veggie Fajitas.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$250</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-5.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Oldtimer with Cheese.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-6.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Crispy Fiery Pepper Crispers.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="tab6" class="tab-pane">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$100</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$150</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-3.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$200</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-4.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Black Bean & Veggie Fajitas.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$250</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-5.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Oldtimer with Cheese.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('') }}img/product/menu-6.jpg">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Crispy Fiery Pepper Crispers.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$120</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-1.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Lamb Salad with Fregola.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$180</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="single-menu-product mb-30">
-                                <div class="menu-product-img">
-                                    <img alt="" src="{{ asset('img/product/menu-2.jpg') }}">
-                                </div>
-                                <div class="menu-product-content">
-                                    <div class="menu-title-price">
-                                        <div class="menu-title">
-                                            <h4>
-                                                Ultimate Bacon Burger.
-                                            </h4>
-                                        </div>
-                                        <div class="menu-price">
-                                            <span>$170</span>
-                                        </div>
-                                    </div>
-                                    <p>Categories: Subway, Masala, Indian</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
+                            </div>
+                        @endforeach
+
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

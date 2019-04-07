@@ -16,5 +16,17 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/contact', 'HomeController@contact')->name('contact');
+
+Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
+
+    Route::resource('slider','SliderController');
+    Route::resource('about','AboutController');
+    Route::resource('gcategory','GCategoryController');
+    Route::resource('gallery','GalleryController');
+    Route::resource('mcategory','MCategoryController');
+    Route::resource('menu','MenuController');
+    Route::resource('config','SiteConfigController');
+
+});
+
