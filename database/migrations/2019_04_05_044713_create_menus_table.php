@@ -19,7 +19,7 @@ class CreateMenusTable extends Migration
             $table->foreign("category_id")->references("id")->on("mcategories")->onDelete("cascade");
             $table->integer("price");
             $table->text("title");
-            $table->string("destcrption");
+            $table->string("destcription");
             $table->string("image_url");
             $table->boolean("status");
             $table->timestamps();
