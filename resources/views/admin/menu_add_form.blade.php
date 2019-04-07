@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="contact-message-wrapper">
-                        <h4 class="contact-title mb-25">Edit Slider</h4>
+                        <h4 class="contact-title mb-25">Add Menu</h4>
                         <div class="contact-message">
                             <form method="POST" action="{{ route('menu.store') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
