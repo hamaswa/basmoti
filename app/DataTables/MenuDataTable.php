@@ -35,6 +35,7 @@ class MenuDataTable extends DataTable
      *
      * @return \Yajra\DataTables\Html\Builder
      */
+
     public function html()
     {
         return $this->builder()

@@ -19,6 +19,7 @@ class GalleryCategoryDataTable extends DataTable
             ->addColumn('action', 'admin.gcategoryaction');
     }
 
+
     /**
      * Get query source of dataTable.
      *

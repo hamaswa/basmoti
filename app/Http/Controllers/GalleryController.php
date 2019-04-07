@@ -19,6 +19,7 @@ class GalleryController extends Controller
         return view("admin.gallery")->with("gallery",Gallery::all());
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

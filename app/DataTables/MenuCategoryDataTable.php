@@ -19,6 +19,7 @@ class MenuCategoryDataTable extends DataTable
             ->addColumn('action', 'admin.mcategoryaction');
     }
 
+
     /**
      * Get query source of dataTable.
      *
