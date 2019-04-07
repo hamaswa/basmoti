@@ -9,7 +9,7 @@ use App\DataTables\MessagesDatatable;
 
 class MessageController extends Controller
 {
-    public function index(MessagesDatatable $datatable)
+    public function index(MessagesDataTable $datatable)
     {
        return $datatable->render("admin.messages");
 

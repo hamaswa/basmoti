@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\MCategoryDatatable;
+use App\DataTables\MCategoryDataTable;
 use App\Mcategory;
 use Datatables;
 

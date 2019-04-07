@@ -38,13 +38,13 @@ class MessagesDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    ->addAction(['width' => '80px'])
-                    ->parameters([
-                        'dom' => 'Bfrtip',
-                        'buttons' => ['create', 'reset', 'reload'],
-                    ]);
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            ->addAction(['width' => '80px'])
+            ->parameters([
+                'dom' => 'Bfrtip',
+                'buttons' => ['create', 'reset', 'reload'],
+            ]);
     }
 
     /**

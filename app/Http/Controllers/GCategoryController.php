@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\GCategoryDatatable;
+use App\DataTables\GCategoryDataTable;
 use App\Gcategory;
 use Datatables;
 
@@ -14,7 +14,7 @@ class GCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(GCategoryDatatable $datatable)
+    public function index(GCategoryDataTable $datatable)
     {
         return $datatable->render("admin.gcategory");
 
