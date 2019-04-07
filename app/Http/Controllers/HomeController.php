@@ -48,13 +48,11 @@ class HomeController extends Controller
 
     }
 
+
     public function about()
     {
         return view('about-us');
     }
 
-    public function contact()
-    {
-        return view('contact-us');
-    }
+
 }

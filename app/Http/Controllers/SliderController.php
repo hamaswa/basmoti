@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Slider;
+use File;
 
 class SliderController extends Controller
 {
@@ -37,17 +38,29 @@ class SliderController extends Controller
     {
         $data=$request->all();
         $slider = Slider::find($id);
-        $image = $request->file("image_url");
-        $destinationPath = 'uploads';
-        $image->move($destinationPath,$image->getClientOriginalName());
+
 
         $slider->update(
             [
                 'video' => $data['video'],
-                'image_url' => $image->getClientOriginalName(),
                 'description' => $data['description'],
             ]
         );
+        if($request->has("image_url")){
+            $imagetodelete = $slider->image_url;
+            if(File::exists($imagetodelete)){
+                File::delete($imagetodelete);
+            }
+            $image = $request->file("image_url");
+            $destinationPath = 'uploads';
+            $imagename = date('ymdhms') . $image->getClientOriginalName();
+            $image->move($destinationPath,$imagename);
+            $slider->update(
+                [
+                    'image_url'=> $imagename
+                ]
+            );
+        }
         return redirect(route("home"));
     }
 

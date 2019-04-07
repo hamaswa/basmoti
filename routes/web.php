@@ -16,7 +16,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/contact', 'HomeController@contact')->name('contact');
+Route::post('/contact-us', 'MessageController@contactus')->name('contact-us.store');
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
 
@@ -27,6 +27,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function() {
     Route::resource('mcategory','MCategoryController');
     Route::resource('menu','MenuController');
     Route::resource('config','SiteConfigController');
+    Route::resource('messages','MessageController');
 
 });
 

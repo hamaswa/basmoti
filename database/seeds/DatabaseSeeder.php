@@ -45,6 +45,7 @@ class DatabaseSeeder extends Seeder
 
         Siteconfig::create([
             'title'=>'Site Title Here Please',
+            'site_logo'=>'Logo Here',
             'facebook'=>'',
             'twitter'=>'',
             'youtube'=>'',

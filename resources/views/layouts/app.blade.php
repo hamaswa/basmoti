@@ -37,7 +37,12 @@
             <div class="col-lg-3 col-md-4 col-5 col-sm-4">
                 <div class="logo">
                     <a href="{{ route("home") }}">
+                        @if($config->site_logo == "Logo Here")
                         <img class="logo-normal" alt="" src="{{ asset('img/logo/logo.png') }}">
+                            @else
+                            <img class="logo-normal" alt="" src="{{ asset('uploads/'.$config->site_logo) }}">
+                            @endif
+
                     </a>
                 </div>
             </div>
@@ -53,7 +58,7 @@
                                 <li class="mega-menu-position top-hover">
                                     <a href="{{ route("home") }}#menu">menu <i class="ion-chevron-down"></i></a>
                                 </li>
-                                <li><a href="{{ route("contact") }}">contact us</a></li>
+                                <li><a href="#contact-us">contact us</a></li>
                                 @if(auth()->id())
 
                                     <li>

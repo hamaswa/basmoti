@@ -17,7 +17,7 @@ class CreateSiteconfigsTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('title');
-            //$table->string("site_log");
+            $table->string("site_logo");
             $table->string("facebook");
             $table->string("twitter");
             $table->string("youtube");

@@ -79,7 +79,7 @@
                                 </li>
 
 
-                                <li><a href="{{ route("contact") }}">Messages</a></li>
+                                <li><a href="{{ route("messages.index") }}">Messages</a></li>
                                 @if(auth()->id())
 
                                     <li>

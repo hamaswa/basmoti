@@ -9,4 +9,8 @@ class Gcategory extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function gallery(){
+        return $this->hasMany('App\Gallery','category_id');
+    }
 }

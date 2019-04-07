@@ -189,9 +189,7 @@
         <div class="container">
             <div class="section-title text-center mb-50">
                 <h2>{{ $config->menutitle }}</h2>
-                @if(auth()->id())
-                    <div class="col-sm-12 justify-content-xl-end"><a href="#"> Edit </a></div>
-                @endif
+
                 <p>
                     {{ $config->menudescription }}
                 </p>
@@ -221,7 +219,7 @@
                                 <div class="col-lg-6">
                                     <div class="single-menu-product mb-30">
                                         <div class="menu-product-img">
-                                            <img alt="" src="{{ asset('/uploads/'.$gal->image_url) }}">
+                                            <img alt="" src="{{ asset('/uploads/'.$menu->image_url) }}">
                                         </div>
                                         <div class="menu-product-content">
                                             <div class="menu-title-price">
@@ -248,6 +246,87 @@
         </div>
     </div>
 
+    <div class="contact-area pt-100" id="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="contact-message-wrapper">
+                        <h4 class="contact-title mb-25">Leave Us a Message</h4>
+                        <div class="contact-message">
+                            <form id="contact-form" action="{{ route('contact-us.store') }}" method="post">
+                                {{csrf_field()}}
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-style mb-20">
+                                            <input name="fullname" placeholder="Full Name" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="contact-form-style mb-20">
+                                            <input name="email" placeholder="Email Address" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="contact-form-style mb-20">
+                                            <input name="subject" placeholder="Subject" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="contact-form-style">
+                                            <textarea name="message" placeholder="Message"></textarea>
+                                            <button class="submit btn-style" id="contact-submit" type="submit">SEND MESSAGE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <p class="form-messege"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info-area">
+                        <h4 class="contact-title mb-18">Contact Us</h4>
+                        <p>Lorem ipsum dolor sit amet, conse ncteturll adipisicing elit, sed do eiusmod </p>
+                        <div class="contact-info-wrap">
+                            <div class="single-contact-info mb-40">
+                                <div class="contact-info-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>Location :</h4>
+                                    <p>77, seventh avenue, Road USA.</p>
+                                </div>
+                            </div>
+                            <div class="single-contact-info mb-35">
+                                <div class="contact-info-icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>phone :</h4>
+                                    <p>+00 111 222 333 44</p>
+                                    <p>+00 111 222 333 44</p>
+                                </div>
+                            </div>
+                            <div class="single-contact-info">
+                                <div class="contact-info-icon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div class="contact-info-content">
+                                    <h4>mail :</h4>
+                                    <p><a href="#">yourmail@gmail.com</a></p>
+                                    <p><a href="#">info@example.com</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-area pt-100">
+                <div id="googleMap"></div>
+            </div>
+        </div>
+    </div>
 
 
 

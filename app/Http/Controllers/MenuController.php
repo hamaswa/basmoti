@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\DataTables\MenuDataTable;
-use App\DataTables\UsersDataTablesEditor;
 
 use App\Mcategory;
 use App\Menu;
 use Datatables;
+use File;
 
 
 class MenuController extends Controller
@@ -59,9 +59,7 @@ class MenuController extends Controller
                 'status'=>'1'
             ]
         );
-        $datatable = new MenuDataTable();
-
-        return $datatable->render("admin.menu");
+        return redirect( route("menu.index"));
 
     }
 
@@ -98,7 +96,41 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $data = $request->all();
+        $menu = Menu::find($id);
+        $menu->update(
+            [
+                'category_id' => $data['category_id'],
+                'title' => $data['title'],
+                'description'=>$data['description'],
+                'price'=>$data['price'],
+            ]
+        );
+
+        if($request->hasFile("image_url")){
+            $imagetodelete = $menu->image_url;
+            if(File::exists($imagetodelete)){
+                File::delete($imagetodelete);
+            }
+            $data = $request->all();
+
+            $image = $request->file("image_url");
+            $destinationPath = 'uploads';
+            $imagename = date('ymdhms').$image->getClientOriginalName();
+            $image->move($destinationPath, $imagename);
+
+            Menu::create(
+                [
+                    'image_url' => $imagename
+                ]
+            );
+
+            return redirect( route("menu.index"));
+        }
+
+
+        return redirect( route("menu.index"));
     }
 
     /**
@@ -109,6 +141,11 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $menu = Menu::find($id);
+        if(File::exists($menu->image_url)){
+            File::delete($menu->image_url);
+        }
+        $menu->delete();
+        return redirect(route("menu.index"));
     }
 }

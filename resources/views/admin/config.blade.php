@@ -16,6 +16,14 @@
                             {{ csrf_field() }}
                             <div class="row">
                                 <div class="col-lg-12 mb-20">
+                                    <input class="form-control" name="title" value="{{ $config->title }}"
+                                           placeholder="Site Title" type="text"/>
+                                </div>
+                                <div class="col-lg-12 mb-20">
+                                    <input class="form-control" name="site_logo"
+                                           placeholder="Site logo" type="file"/>
+                                </div>
+                                <div class="col-lg-12 mb-20">
                                     <input class="form-control" name="facebook" value="{{ $config->facebook }}"
                                            placeholder="Facebook URL" type="text"/>
                                 </div>

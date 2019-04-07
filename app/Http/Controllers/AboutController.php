@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\About;
+use File;
 
 class AboutController extends Controller
 {
@@ -29,19 +30,28 @@ class AboutController extends Controller
     {
         $data = $request->all();
         $about = About::find($id);
-        $image = $request->file("image_url");
-        $imagename = date('ymdhms').$image->getClientOriginalName();
-        $destinationPath = 'uploads';
-        $image->move($destinationPath, $imagename);
-
         $about->update(
             [   'title1' => $data['title1'],
                 'title2' => $data['title1'],
-                'image_url' => $imagename,
                 'short_description' => $data['short_description'],
                 'description' => $data['description'],
             ]
         );
+
+        if($request->hasFile('image_url')) {
+            $imagetodelete = "/uploads/".$about->image_url;
+            if(File::exists($imagetodelete)) {
+                File::delete($imagetodelete);
+            }
+
+            $image = $request->file("image_url");
+            $imagename = date('ymdhms') . $image->getClientOriginalName();
+            $destinationPath = 'uploads';
+            $image->move($destinationPath, $imagename);
+            $about->update([
+                'image_url' => $imagename,
+            ]);
+        }
         return redirect(route("home"));
 
     }

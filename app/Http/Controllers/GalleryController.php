@@ -7,6 +7,7 @@ use File;
 use App\Gcategory;
 use App\Gallery;
 
+
 class GalleryController extends Controller
 {
     /**

@@ -2,6 +2,7 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/public/js/ajax-mail.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/vendor/jquery.min.min.js" />
         <item url="file://$PROJECT_DIR$/public/js/vendor/modernizr.min.min.js" />
         <item url="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Console/Presets/none-stubs/app.min.js" />
@@ -18,6 +19,7 @@
       <root url="file://$PROJECT_DIR$/resources/js/main.min.js" />
       <root url="file://$PROJECT_DIR$/resources/js/modernizr.min.min.js" />
       <root url="file://$PROJECT_DIR$/resources/js/plugins.min.js" />
+      <root url="file://$PROJECT_DIR$/public/js/ajax-mail.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/vendor/jquery.min.min.js" />
       <root url="file://$PROJECT_DIR$/public/js/vendor/modernizr.min.min.js" />
       <root url="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Console/Presets/none-stubs/app.min.js" />
