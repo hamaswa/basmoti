@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataTables\MenuCategoryDatatable;
+use App\DataTables\MCategoryDatatable;
 use App\Mcategory;
 use Datatables;
 
@@ -14,7 +14,7 @@ class MCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(MenuCategoryDatatable $datatable)
+    public function index(MCategoryDatatable $datatable)
     {
         return $datatable->render("admin.mcategory");
 

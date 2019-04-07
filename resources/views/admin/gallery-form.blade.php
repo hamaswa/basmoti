@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="contact-message-wrapper">
-                        <h4 class="contact-title mb-25">Edit Slider</h4>
+                        <h4 class="contact-title mb-25">Add Gallery Image</h4>
                         <div class="contact-message">
                             <form method="POST" action="{{ route('gallery.store') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -22,15 +22,9 @@
                                     </select>
                                 </div>
                                 <div class="col-lg-12 mb-20">
-
-
-
                                     <input class="form-control" id="alt" name="alt" placeholder="Alternat Text" type="text" />
                                 </div>
                                 <div class="col-lg-12 mb-20">
-
-
-
                                     <input class="form-control" name="image_url" placeholder="Gallery Image" type="file" />
                                 </div>
 
