@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Messages;
-use App\DataTables\MessagesDatatable;
+use App\DataTables\MessagesDataTable;
 
 
 class MessageController extends Controller
