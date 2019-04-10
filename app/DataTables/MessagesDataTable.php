@@ -16,7 +16,7 @@ class MessagesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'message.action');
+            ->addColumn('action', 'admin.messageaction');
     }
 
     /**

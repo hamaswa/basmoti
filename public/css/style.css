@@ -2830,6 +2830,16 @@ h3.reserv-title {
     background-color: #40c1df;
     border: 2px solid #40c1df;
 }
+
+.social-icon li a.youtube {
+    background-color: #ff0000;
+    border: 2px solid #ff0000;
+}
+
+.social-icon li a.pinterest {
+    background-color: #ff0000;
+    border: 2px solid #ff0000;
+}
 .social-icon li a.instagram {
     background-color: #c619b8;
     border: 2px solid #c619b8;
@@ -3070,6 +3080,17 @@ h3.reserv-title {
     background-color: #3c5b9b;
     border: 2px solid #3c5b9b;
 }
+
+.team-social-icon li a.youtube {
+    background-color: #ff0000;
+    border: 2px solid #ff0000;
+}
+
+.team-social-icon li a.pinterest {
+    background-color: #ff0000;
+    border: 2px solid #ff0000;
+}
+
 .team-social-icon li a.twitter {
     background-color: #40c1df;
     border: 2px solid #40c1df;
@@ -3083,6 +3104,8 @@ h3.reserv-title {
     border: 2px solid #fff;
     color: #3c5b9b;
 }
+
+
 .team-social-icon li a.twitter:hover {
     background-color: #fff;
     border: 2px solid #fff;

@@ -287,7 +287,7 @@
                 <div class="col-lg-4">
                     <div class="contact-info-area">
                         <h4 class="contact-title mb-18">Contact Us</h4>
-                        <p>Lorem ipsum dolor sit amet, conse ncteturll adipisicing elit, sed do eiusmod </p>
+                        <p>{{$config->contact_us}}</p>
                         <div class="contact-info-wrap">
                             <div class="single-contact-info mb-40">
                                 <div class="contact-info-icon">
@@ -295,7 +295,7 @@
                                 </div>
                                 <div class="contact-info-content">
                                     <h4>Location :</h4>
-                                    <p>77, seventh avenue, Road USA.</p>
+                                    <p><a href="#map">{{$config->location}}</a></p>
                                 </div>
                             </div>
                             <div class="single-contact-info mb-35">
@@ -304,8 +304,7 @@
                                 </div>
                                 <div class="contact-info-content">
                                     <h4>phone :</h4>
-                                    <p>+00 111 222 333 44</p>
-                                    <p>+00 111 222 333 44</p>
+                                    <p>{{$config->phone}}</p>
                                 </div>
                             </div>
                             <div class="single-contact-info">
@@ -314,17 +313,15 @@
                                 </div>
                                 <div class="contact-info-content">
                                     <h4>mail :</h4>
-                                    <p><a href="#">yourmail@gmail.com</a></p>
-                                    <p><a href="#">info@example.com</a></p>
+                                    <p><a href="@mailto">{{$config->email}}</a></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="map-area pt-100">
-                <div id="googleMap"></div>
-            </div>
+            <div id="map" class="map-area pt-100">
+                <iframe src="{{$config->map}}" width="90%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>            </div>
         </div>
     </div>
 

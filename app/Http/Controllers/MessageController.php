@@ -9,6 +9,14 @@ use App\DataTables\MessagesDataTable;
 
 class MessageController extends Controller
 {
+
+    public function show($id)
+    {
+        $message = Messages::find($id);
+        return view("admin.message_detail")->with("message",$message);
+    }
+
+
     public function index(MessagesDataTable $datatable)
     {
        return $datatable->render("admin.messages");

@@ -34,6 +34,18 @@ class SiteConfigController extends Controller
         $data = $request->all();
         $config = Siteconfig::find($id);
         $config->update([
+            'email'=>$data['email'],
+            'sunday'=>$data['sunday'],
+            'monday'=>$data['monday'],
+            'tuesday'=>$data['tuesday'],
+            'wednesday'=>$data['wednesday'],
+            'thursday'=>$data['thursday'],
+            'friday'=>$data['friday'],
+            'map'=>$data['map'],
+           
+            'phone'=>$data['phone'],
+            'location'=>$data['location'],
+            'contact_us'=>$data['contact_us'],
             'title'=>$data['title'],
             'facebook'=>$data['facebook'],
             'twitter'=>$data['twitter'],
