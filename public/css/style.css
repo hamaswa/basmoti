@@ -2886,6 +2886,16 @@ h3.reserv-title {
     border: 2px solid #fff;
     color: #3c5b9b;
 }
+.social-icon li a.youtube:hover {
+    background-color: #992222;
+    border: 2px solid #ffffff;
+}
+
+.social-icon li a.pinterest:hover {
+    background-color: #992222;
+    border: 2px solid #ffffff;
+}
+
 .footer-map {
     margin: 12px 0 20px;
 }

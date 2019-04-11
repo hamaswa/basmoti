@@ -42,13 +42,19 @@
                                            placeholder="Phone" type="text"/>
                                 </div>
                                 <div class="col-lg-12 mb-20">
-                                   <textarea name="contact_us" id="contact_us"
-                                             placeholder="Contact Us Intro">
+                                    <h6 class="contact-title mb-25">Contact Us Info</h6>
+
+                                    <textarea name="contact_us" id="contact_us"
+                                              placeholder="Contact Us Intro">
                                                 {{ $config->contact_us }}
                                             </textarea>
                                 </div>
+                            </div>
 
-                                <hr/>
+
+                            <h4 class="contact-title">Open/Close Timing</h4>
+                            <div class="row">
+
                                 <div class="col-lg-6 mb-20">
                                     <input class="form-control" name="saturday" value="{{ $config->saturday }}"
                                            placeholder="Saturday timing" type="text"/>
@@ -78,7 +84,11 @@
                                            placeholder="Friday Timing" type="text"/>
                                 </div>
 
-                                <hr/>
+                            </div>
+                            <h4 class="contact-title">Social Media Settings</h4>
+
+                            <div class="row">
+
 
                                 <div class="col-lg-6 mb-20">
                                     <input class="form-control" name="facebook" value="{{ $config->facebook }}"
@@ -100,7 +110,10 @@
                                     <input class="form-control" name="instagram" value="{{ $config->instagram }}"
                                            placeholder="Pintrest URL" type="text"/>
                                 </div>
-                                <hr/>
+                            </div>
+
+                            <h4 class="contact-title">Other Settings</h4>
+                            <div class="row">
                                 <div class="col-lg-12 mb-20">
                                     <input class="form-control" name="gallerytitle" value="{{ $config->gallerytitle }}"
                                            placeholder="Gallery Title" type="text"/>
